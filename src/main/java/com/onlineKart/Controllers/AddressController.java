@@ -43,7 +43,6 @@ public class AddressController {
 	
 	@PostMapping("/addAddress")
 	public ResponseEntity<Address> addAddresss(@RequestBody Address addresss){
-		System.out.println("Hello");
 		return new ResponseEntity<Address>(this.addressService.addNewAddress(addresss),HttpStatus.OK);
 	}
 	
@@ -60,7 +59,6 @@ public class AddressController {
 	
 	@DeleteMapping("/deleteAddress/{addresss_id}")
 	public HttpStatus deleteAddress(@PathVariable(name = "addresss_id") int id){
-		System.out.println(id);
 		this.addressService.deleteAddress(id);
 		return HttpStatus.OK;
 		

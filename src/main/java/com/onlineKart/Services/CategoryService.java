@@ -8,11 +8,10 @@ import com.onlineKart.models.Category;
 
 @Service
 public interface CategoryService {
-	public List<Category> getCategoryByDate(String date);
 	public Category addNewCategory(Category category);
-	public Category getCategoryFromId(int id);
-	public List<Category> getCategorys();
+	public Category getCategoryFromId(String id);
+	public List<Category> getCategories();
 	public Category updateCategory(Category category);
-	public void deleteCategory(int id);
-	public List<Category> addAllCategorys(List<Category> categorys);
+	public void deleteCategory(String id);
+	public List<Category> addAllCategories(List<Category> categorys);
 }

@@ -8,11 +8,10 @@ import com.onlineKart.models.User;
 
 @Service
 public interface UserService {
-	public List<User> getUserByDate(String date);
 	public User addNewUser(User user);
-	public User getUserFromId(int id);
+	public User getUserFromId(String id);
 	public List<User> getUsers();
 	public User updateUser(User user);
-	public void deleteUser(int id);
+	public void deleteUser(String id);
 	public List<User> addAllUsers(List<User> users);
 }
