@@ -1,8 +1,13 @@
 package com.onlineKart.models;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,11 +19,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Product {
+	@Id
 	String productId;
 	String productName;
 	double price;
 	@ManyToOne
-	Category category; //Many products can belong to one category
+	Category category; 
 	@ManyToMany
-	String orderId;
+	List<Order> orders;
 }

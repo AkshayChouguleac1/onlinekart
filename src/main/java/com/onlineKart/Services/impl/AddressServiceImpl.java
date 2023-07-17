@@ -3,11 +3,12 @@ package com.onlineKart.Services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.onlineKart.Repositories.AddressRepo;
 import com.onlineKart.Services.AddressService;
 import com.onlineKart.models.Address;
-
+@Service
 public class AddressServiceImpl implements AddressService{
 
 	@Autowired

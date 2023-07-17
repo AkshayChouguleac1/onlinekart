@@ -3,12 +3,13 @@ package com.onlineKart.Services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.onlineKart.Repositories.ProductRepo;
 import com.onlineKart.Services.ProductService;
 import com.onlineKart.models.Product;
 import com.onlineKart.models.Product;
-
+@Service
 public class ProductServiceImpl implements ProductService{
 	@Autowired
 	ProductRepo productRepo;

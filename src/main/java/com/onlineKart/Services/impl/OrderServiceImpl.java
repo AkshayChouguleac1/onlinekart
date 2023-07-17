@@ -3,11 +3,12 @@ package com.onlineKart.Services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.onlineKart.Repositories.OrderRepo;
 import com.onlineKart.Services.OrderService;
 import com.onlineKart.models.Order;
-
+@Service
 public class OrderServiceImpl implements OrderService{
 
 	@Autowired

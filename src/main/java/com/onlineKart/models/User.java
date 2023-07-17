@@ -2,9 +2,21 @@ package com.onlineKart.models;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-
+import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class User {
+	@Id
 	private String userId;
 	private String firstName;
 	private String lastName;
@@ -14,6 +26,6 @@ public class User {
 	private String userRole;
 	private String password;
 	@OneToMany
-	private List<Address> addresses;  
+	private List<Address> addresses; 
 
 }

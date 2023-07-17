@@ -24,7 +24,7 @@ public class AddressController {
 	
 	
 	@GetMapping("/getAddress/{addresss_id}")
-	public ResponseEntity<Address> getAddresss(@PathVariable(name = "addresss_id") int id){
+	public ResponseEntity<Address> getAddresss(@PathVariable(name = "addresss_id") String id){
 		Address fetchedAddresss=this.addressService.getAddressFromId(id);
 		return new ResponseEntity<Address>(fetchedAddresss,HttpStatus.OK);
 	}
@@ -32,14 +32,9 @@ public class AddressController {
 	@GetMapping("/getAllAddresss")
 	public ResponseEntity<List<Address>> getAllIems(){
 		
-		return new ResponseEntity<List<Address>>(this.addressService.getAddresss(),HttpStatus.OK);
+		return new ResponseEntity<List<Address>>(this.addressService.getAddresses(),HttpStatus.OK);
 	}
-	
-	@GetMapping("/getAllAddresssForDate/{date}")
-	public ResponseEntity<List<Address>> getAllIems(@PathVariable(name = "date") String date){
-		
-		return new ResponseEntity<List<Address>>(this.addressService.getAddressByDate(date),HttpStatus.OK);
-	}
+
 	
 	@PostMapping("/addAddress")
 	public ResponseEntity<Address> addAddresss(@RequestBody Address addresss){
@@ -58,7 +53,7 @@ public class AddressController {
 	}
 	
 	@DeleteMapping("/deleteAddress/{addresss_id}")
-	public HttpStatus deleteAddress(@PathVariable(name = "addresss_id") int id){
+	public HttpStatus deleteAddress(@PathVariable(name = "addresss_id") String id){
 		this.addressService.deleteAddress(id);
 		return HttpStatus.OK;
 		
