@@ -19,6 +19,4 @@ public class Category {
 	@Id
 	String categoryId;
 	String categoryName;
-	@OneToMany
-	List<Product> products;
 }

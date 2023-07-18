@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.onlineKart.Repositories.OrderRepo;
 import com.onlineKart.Services.OrderService;
-import com.onlineKart.models.Order;
+import com.onlineKart.models.OrderModel;
 @Service
 public class OrderServiceImpl implements OrderService{
 
@@ -15,22 +15,22 @@ public class OrderServiceImpl implements OrderService{
 	OrderRepo orderRepo;
 	
 	@Override
-	public Order addNewOrder(Order order) {
+	public OrderModel addNewOrder(OrderModel order) {
 		return orderRepo.save(order);
 	}
 
 	@Override
-	public Order getOrderFromId(String id) {
+	public OrderModel getOrderFromId(String id) {
 		return orderRepo.findById(id).orElse(null);
 	}
 
 	@Override
-	public List<Order> getOrders() {
+	public List<OrderModel> getOrders() {
 		return orderRepo.findAll();
 	}
 
 	@Override
-	public Order updateOrder(Order order) {
+	public OrderModel updateOrder(OrderModel order) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<Order> addAllOrders(List<Order> orders) {
+	public List<OrderModel> addAllOrders(List<OrderModel> orders) {
 		return this.orderRepo.saveAll(orders);
 	}
 }

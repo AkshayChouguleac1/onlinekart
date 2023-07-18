@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.onlineKart.models.Order;
+import com.onlineKart.models.OrderModel;
 
 @Service
 public interface OrderService {
-	public Order addNewOrder(Order order);
-	public Order getOrderFromId(String id);
-	public List<Order> getOrders();
-	public Order updateOrder(Order order);
+	public OrderModel addNewOrder(OrderModel order);
+	public OrderModel getOrderFromId(String id);
+	public List<OrderModel> getOrders();
+	public OrderModel updateOrder(OrderModel order);
 	public void deleteOrder(String id);
-	public List<Order> addAllOrders(List<Order> orders);
+	public List<OrderModel> addAllOrders(List<OrderModel> orders);
 }

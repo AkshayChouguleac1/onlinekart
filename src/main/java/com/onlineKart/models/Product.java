@@ -25,6 +25,6 @@ public class Product {
 	double price;
 	@ManyToOne
 	Category category; 
-	@ManyToMany
-	List<Order> orders;
+	@ManyToOne
+	OrderModel orderModel;
 }

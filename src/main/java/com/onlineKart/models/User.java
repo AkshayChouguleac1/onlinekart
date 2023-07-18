@@ -2,10 +2,10 @@ package com.onlineKart.models;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +25,7 @@ public class User {
 	private String emailId;
 	private String userRole;
 	private String password;
-	@OneToMany
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<Address> addresses; 
 
 }
