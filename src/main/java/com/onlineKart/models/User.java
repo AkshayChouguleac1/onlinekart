@@ -26,6 +26,9 @@ public class User {
 	private String userRole;
 	private String password;
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-	private List<Address> addresses; 
+	private List<Address> addresses;
+	@OneToMany(mappedBy = "user")
+	List<OrderModel> orderModels;
+	
 
 }

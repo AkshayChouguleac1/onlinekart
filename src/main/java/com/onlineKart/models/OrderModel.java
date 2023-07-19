@@ -26,11 +26,11 @@ import lombok.ToString;
 public class OrderModel {
 	@Id
 	String orderId;
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	User user;
 	@Temporal(TemporalType.DATE)
 	Date orderDate;
-	String orderPriority; //low , medium , high
+	String orderPriority; 
 	@OneToMany(mappedBy = "orderModel",cascade = CascadeType.ALL)
 	List<Product> products;
 }
