@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.onlineKart.Repositories.UserRepo;
 import com.onlineKart.Services.UserService;
-import com.onlineKart.models.User;
+import com.onlineKart.models.UserProfile;
 @Service
 public class UserServiceImpl implements UserService{
 	
@@ -15,22 +15,22 @@ public class UserServiceImpl implements UserService{
 	UserRepo userRepo;
 	
 	@Override
-	public User addNewUser(User user) {
+	public UserProfile addNewUser(UserProfile user) {
 		return userRepo.save(user);
 	}
 
 	@Override
-	public User getUserFromId(String id) {
+	public UserProfile getUserFromId(String id) {
 		return userRepo.findById(id).orElse(null);
 	}
 
 	@Override
-	public List<User> getUsers() {
+	public List<UserProfile> getUsers() {
 		return userRepo.findAll();
 	}
 
 	@Override
-	public User updateUser(User user) {
+	public UserProfile updateUser(UserProfile user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -42,7 +42,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<User> addAllUsers(List<User> users) {
+	public List<UserProfile> addAllUsers(List<UserProfile> users) {
 		return this.userRepo.saveAll(users);
+	}
+
+	@Override
+	public UserProfile findByEmailId(String username) {
+		return this.userRepo.findByEmailId(username);
 	}
 }

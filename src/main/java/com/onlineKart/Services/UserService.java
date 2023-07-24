@@ -4,14 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.onlineKart.models.User;
+import com.onlineKart.models.UserProfile;
 
 @Service
 public interface UserService {
-	public User addNewUser(User user);
-	public User getUserFromId(String id);
-	public List<User> getUsers();
-	public User updateUser(User user);
+	public UserProfile addNewUser(UserProfile user);
+	public UserProfile getUserFromId(String id);
+	public List<UserProfile> getUsers();
+	public UserProfile updateUser(UserProfile user);
 	public void deleteUser(String id);
-	public List<User> addAllUsers(List<User> users);
+	public List<UserProfile> addAllUsers(List<UserProfile> users);
+	public UserProfile findByEmailId(String username);
 }
