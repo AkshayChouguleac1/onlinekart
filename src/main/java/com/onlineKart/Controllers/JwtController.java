@@ -11,13 +11,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.onlineKart.Services.CustomUserDetailsService;
+import com.onlineKart.Services.RefreshTokenService;
+import com.onlineKart.dtos.RefreshTokenRequest;
 import com.onlineKart.jwtHelper.JwtRequest;
 import com.onlineKart.jwtHelper.JwtResponse;
 import com.onlineKart.jwtHelper.JwtUtil;
+import com.onlineKart.models.RefreshToken;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -31,6 +33,9 @@ public class JwtController {
 	
 	@Autowired
 	private JwtUtil jwtUtil;
+	
+	@Autowired
+	private RefreshTokenService refreshTokenService;
 	
 	@PostMapping("/generateToken")
 	public ResponseEntity<JwtResponse> getToken(@RequestBody JwtRequest jwtRequest) throws Exception {
@@ -51,12 +56,34 @@ public class JwtController {
 		
 		UserDetails userDetails= this.customUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
 		
-		String token = this.jwtUtil.generateToken(userDetails);
+		String accessToken = this.jwtUtil.generateToken(userDetails);
 		
-		JwtResponse jwtResponse = new JwtResponse(token);
+		RefreshToken refreshToken = refreshTokenService.createRefreshToken(jwtRequest.getUsername());
+		
+		JwtResponse jwtResponse = new JwtResponse();
+		jwtResponse.setAccessToken(accessToken);
+		jwtResponse.setRefreshToken(refreshToken.getRefreshToken());
 		
 		return new ResponseEntity<JwtResponse>(jwtResponse,HttpStatus.OK);
 		
 	}
+	
+    @PostMapping("/refreshToken")
+    public JwtResponse refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+    	try {
+        	RefreshToken refreshToken = refreshTokenService.findByRefreshToken(refreshTokenRequest.getRefreshToken()).orElse(null);
+        	refreshToken=refreshTokenService.verifyExpiration(refreshToken);
+        	UserDetails userDetails = customUserDetailsService.loadUserByUsername(refreshToken.getUserProfile().getEmailId());
+            String accessToken = jwtUtil.generateToken(userDetails);
+            JwtResponse jwtResponse=new JwtResponse();
+            jwtResponse.setAccessToken(accessToken);
+            jwtResponse.setRefreshToken(refreshTokenRequest.getRefreshToken());
+            return jwtResponse;
+			
+		} catch (Exception e) {
+			throw  new RuntimeException(
+                    "Refresh token is not in database! Please sign in again");
+		}
+    }
 
 }
