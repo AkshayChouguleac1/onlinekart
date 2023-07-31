@@ -48,6 +48,7 @@ protected void configure(HttpSecurity http) throws Exception {
     .disable()
     .authorizeRequests()
     .antMatchers("/generateToken").permitAll()
+    .antMatchers("/refreshToken").permitAll()
     .antMatchers("/api/v1/users/signup").permitAll()
     .antMatchers("/api/v1/addresses/addAddress").permitAll()
     .antMatchers("/refreshToken").permitAll()
