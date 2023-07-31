@@ -50,6 +50,9 @@ public class AddressController {
 	public ResponseEntity<List<Address>> addAddressss(@RequestBody List<Address> addresssList){
 		List savedAddresss= this.addressService.addAllAddresss(addresssList);
 		return new ResponseEntity<List<Address>>(savedAddresss,HttpStatus.OK);
+		
+		
+		//return new ResponseEntity<List<Address>>(savedAddresss,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/deleteAddress/{addresss_id}")

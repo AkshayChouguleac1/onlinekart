@@ -50,7 +50,7 @@ protected void configure(HttpSecurity http) throws Exception {
     .antMatchers("/generateToken").permitAll()
     .antMatchers("/api/v1/users/signup").permitAll()
     .antMatchers("/api/v1/addresses/addAddress").permitAll()
-    
+    .antMatchers("/refreshToken").permitAll()
     .antMatchers(HttpMethod.OPTIONS).permitAll()
     .anyRequest().authenticated()
     .and()

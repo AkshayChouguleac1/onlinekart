@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JwtResponse {
-	String accesstoken;
+public class RefreshTokenRequest {
 	private String refreshToken;
 
 }
