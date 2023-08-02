@@ -2,12 +2,15 @@ package com.onlineKart.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,4 +28,7 @@ public class Category {
 	@GenericGenerator(name = "cat_seq",strategy = "com.onlineKart.Utils.idGenerators.CategoryIdGenerator")
 	String categoryId;
 	String categoryName;
+	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+	@JsonManagedReference
+	List<Product> products;
 }

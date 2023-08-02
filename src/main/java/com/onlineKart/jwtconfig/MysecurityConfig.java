@@ -51,6 +51,7 @@ protected void configure(HttpSecurity http) throws Exception {
     .antMatchers("/refreshToken").permitAll()
     .antMatchers("/api/v1/users/signup").permitAll()
     .antMatchers("/api/v1/addresses/addAddress").permitAll()
+    .antMatchers("/signup/customer/add").permitAll() 
     .antMatchers("/refreshToken").permitAll()
     .antMatchers(HttpMethod.OPTIONS).permitAll()
     .anyRequest().authenticated()

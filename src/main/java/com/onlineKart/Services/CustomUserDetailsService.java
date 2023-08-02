@@ -32,7 +32,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 //			return new User(userProfile.getFirstName(),userProfile.getPassword(), new ArrayList<>());
 //		}
 //		else
-//		{
 //			throw new UsernameNotFoundException("hvhhvhvjhv");
 //		}
 		}
