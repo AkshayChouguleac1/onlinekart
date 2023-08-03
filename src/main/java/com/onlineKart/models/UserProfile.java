@@ -38,8 +38,7 @@ public class UserProfile {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "userProfile",cascade = CascadeType.ALL)
 	private List<Address> addresses;
-	@OneToMany(mappedBy = "userProfile",cascade = CascadeType.ALL)
-	List<OrderModel> orderModels;
+
 	
 
 }

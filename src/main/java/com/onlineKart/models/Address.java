@@ -23,7 +23,6 @@ public class Address {
 	@Id
 	@GeneratedValue(generator = "address_seq")
 	@GenericGenerator(name = "address_seq",strategy = "com.onlineKart.Utils.idGenerators.AddressIdGenerator")
-	
 	String addressId;
 	String addressline;
 	int pincode;

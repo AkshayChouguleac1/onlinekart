@@ -35,8 +35,7 @@ public class OrderModel {
 	@GeneratedValue(generator = "ord_seq")
 	@GenericGenerator(name = "ord_seq",strategy = "com.onlineKart.Utils.idGenerators.OrderIdGenerator")
 	String orderId;
-	@ManyToOne(cascade = CascadeType.ALL)
-	UserProfile userProfile;
+	String userId;
 	@Temporal(TemporalType.DATE)
 	Date orderDate;
 	String orderPriority; 
