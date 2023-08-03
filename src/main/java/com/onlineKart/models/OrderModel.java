@@ -39,6 +39,6 @@ public class OrderModel {
 	@Temporal(TemporalType.DATE)
 	Date orderDate;
 	String orderPriority; 
-	@OneToMany(mappedBy = "orderModel",cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	List<Product> products;
 }

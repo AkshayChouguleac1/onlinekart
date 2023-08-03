@@ -14,14 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.onlineKart.Services.CustomUserDetailsService;
-
 import com.onlineKart.Services.RefreshTokenService;
 import com.onlineKart.dtos.RefreshTokenRequest;
 import com.onlineKart.jwtHelper.JwtRequest;
 import com.onlineKart.jwtHelper.JwtResponse;
 import com.onlineKart.jwtHelper.JwtUtil;
 import com.onlineKart.models.RefreshToken;
-import com.onlineKart.models.RefreshTokenGenerator;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class JwtController {
