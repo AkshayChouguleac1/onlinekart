@@ -13,21 +13,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.onlineKart.Repositories.UserRepo;
 import com.onlineKart.Services.AddressService;
 import com.onlineKart.models.Address;
+import com.onlineKart.models.Category;
+import com.onlineKart.models.Product;
+import com.onlineKart.models.UserProfile;
 
 @RestController
 @RequestMapping("/api/v1/addresses")
 public class AddressController {
 	@Autowired
 	AddressService addressService;
-	
+	@Autowired
+	private UserRepo userRepo;
 	
 	@GetMapping("/getAddress/{addresss_id}")
 	public ResponseEntity<Address> getAddresss(@PathVariable(name = "addresss_id") String id){
 		Address fetchedAddresss=this.addressService.getAddressFromId(id);
 		return new ResponseEntity<Address>(fetchedAddresss,HttpStatus.OK);
 	}
+	
+	
+	@PostMapping("/addAddresstoUer")
+	public ResponseEntity<Address> addnewAddress(@RequestBody Address address)
+	{
+		String id=address.getUserProfile().getUserId();
+		System.out.println("id is"+id);
+		UserProfile userProfile=userRepo.findById(id).orElse(null);
+		address.setUserProfile(userProfile);	
+		return new ResponseEntity<Address>(addressService.addNewAddress(address), HttpStatus.OK);
+	}
+	
 	
 	@GetMapping("/getAllAddresss")
 	public ResponseEntity<List<Address>> getAllIems(){

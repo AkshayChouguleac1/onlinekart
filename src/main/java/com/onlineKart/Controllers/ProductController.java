@@ -35,12 +35,23 @@ public class ProductController {
 	}
 	
 	@PostMapping("/adding/{id}")
-	public ResponseEntity<Product> neweradd(@RequestBody Product Product,@PathVariable("id")String id)
+	public ResponseEntity<Product> neweradd(@RequestBody Product product,@PathVariable("id")String id)
 	{
 		System.out.println(id);
 		Category categoy=categoryRepo.findById(id).orElse(null);
-		Product.setCategory(categoy);
-		return new ResponseEntity<Product>(productService.addNewProduct(Product), HttpStatus.OK);
+		product.setCategory(categoy);
+		return new ResponseEntity<Product>(productService.addNewProduct(product), HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/addproductToCategory")
+	public ResponseEntity<Product> createprod(@RequestBody Product product)
+	{
+		String id=product.getCategory().getCategoryId();
+		System.out.println("id is"+id);
+		Category categoy=categoryRepo.findById(id).orElse(null);
+		product.setCategory(categoy);		
+		return new ResponseEntity<Product>(productService.addNewProduct(product), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/{productId}")
