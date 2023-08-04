@@ -32,8 +32,11 @@ public class Product {
 	String productId;
 	String productName;
 	double price;
-	@ManyToOne
+	//Here I am keeping cascadeType.persist 
+	//Use persist() for saving new entities (e.g., entities with null ID or entities that are new and not yet persisted(saved in db)).
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JsonBackReference
 	Category category; 
+
 
 }
