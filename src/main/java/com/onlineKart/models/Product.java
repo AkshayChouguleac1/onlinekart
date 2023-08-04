@@ -35,6 +35,5 @@ public class Product {
 	@ManyToOne
 	@JsonBackReference
 	Category category; 
-	@ManyToOne
-	OrderModel orderModel;
+
 }

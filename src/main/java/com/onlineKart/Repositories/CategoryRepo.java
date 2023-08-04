@@ -7,5 +7,7 @@ import com.onlineKart.models.Category;
 
 @Repository
 public interface CategoryRepo extends JpaRepository<Category, String> {
+	
+	public Category findByCategoryId(String id);
 
 }
