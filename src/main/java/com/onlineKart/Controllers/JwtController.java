@@ -63,6 +63,7 @@ public class JwtController {
 		JwtResponse jwtResponse = new JwtResponse();
 		jwtResponse.setAccessToken(accessToken);
 		jwtResponse.setRefreshToken(refreshToken.getRefreshToken());
+
 		
 		return new ResponseEntity<JwtResponse>(jwtResponse,HttpStatus.OK);
 		}
@@ -72,6 +73,7 @@ public class JwtController {
     public JwtResponse refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
     	try {
         	RefreshToken refreshToken = refreshTokenService.findByRefreshToken(refreshTokenRequest.getRefreshToken()).orElse(null);
+       // 	System.out.println("refreshToken is" +refreshToken);
         	refreshToken=refreshTokenService.verifyExpiration(refreshToken);
         	UserDetails userDetails = customUserDetailsService.loadUserByUsername(refreshToken.getUserProfile().getEmailId());
             String accessToken = jwtUtil.generateToken(userDetails);
@@ -85,5 +87,12 @@ public class JwtController {
                     "Refresh token is not in database! Please sign in again");
 		}
     }
+    
+   
+    
+    
+    
+    
+    
 
 }

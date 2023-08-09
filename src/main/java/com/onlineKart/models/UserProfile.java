@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -38,7 +40,8 @@ public class UserProfile {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "userProfile",cascade = CascadeType.ALL)
 	private List<Address> addresses;
-
-	
+	@JsonManagedReference
+	@OneToOne(mappedBy = "userProfile",cascade = CascadeType.ALL,orphanRemoval = true)
+    private RefreshToken refreshToken;
 
 }
