@@ -46,7 +46,8 @@ public class JwtController {
 		} catch (UsernameNotFoundException e) {
 			e.printStackTrace();
 			throw new Exception("Username not found");
-		}catch (BadCredentialsException e) {
+		}
+		catch (BadCredentialsException e) {
 			e.printStackTrace();
 
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

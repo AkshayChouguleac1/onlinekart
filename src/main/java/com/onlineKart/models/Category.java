@@ -28,6 +28,7 @@ public class Category {
 	@GenericGenerator(name = "cat_seq",strategy = "com.onlineKart.Utils.idGenerators.CategoryIdGenerator")
 	String categoryId;
 	String categoryName;
+	 private String imageUrl;
 	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
 	@JsonManagedReference
 	List<Product> products;

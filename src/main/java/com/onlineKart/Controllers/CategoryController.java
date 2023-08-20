@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ import com.onlineKart.models.Reply;
 
 @RestController
 @RequestMapping("/api/v1/categories")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CategoryController {
 @Autowired
 	private CategoryService categoryService;
@@ -105,4 +107,21 @@ public class CategoryController {
     	categoryRepo.deleteById(categoryId);
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
+    
+    @PutMapping("/update")
+    public ResponseEntity<Category> updateCat(@RequestBody Category category)
+    {
+    Category cat=categoryService.getCategoryFromId(category.getCategoryId());
+    cat.setCategoryId(category.getCategoryId());
+    cat.setCategoryName(category.getCategoryName());
+    cat.setImageUrl(category.getImageUrl());
+    return new ResponseEntity<Category>(categoryService.updateCategory(cat), HttpStatus.OK);
+    }
+    
+    @GetMapping("/getbyid/{categoryId}")
+    public ResponseEntity<Category> getbyid(@PathVariable(name = "categoryId") String categoryId  )
+    {
+		return new ResponseEntity<Category>(categoryService.getCategoryFromId(categoryId), HttpStatus.OK);
+    }
+    
 }
